@@ -23,7 +23,14 @@ import (
 const population = 1000000
 
 func main() {
-  var numberOfMember int
-  fmt.Scan(&numberOfMember)
+	var n float64
+	fmt.Scan(&n)
 
+	member := n * 100
+	citizen := population - member
+	arrestedMember := member * 0.99
+	arrestedCitizen := citizen * 0.01
+	allArrested := arrestedMember + arrestedCitizen
+
+	fmt.Println(arrestedCitizen / allArrested * 100)
 }
