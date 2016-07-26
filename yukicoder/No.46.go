@@ -7,16 +7,16 @@
 package main
 
 import (
-  "fmt"
+	"fmt"
 )
 
 func main() {
-  var a, b int
-  fmt.Scan(&a, &b)
-  rem := b%a
-  if rem == 0 {
-    fmt.Println(b/a)
-  } else {
-    fmt.Println(b/a+1)
-  }
+	var a, b int
+	fmt.Scan(&a, &b)
+	rem := b % a
+	if rem == 0 {
+		fmt.Println(b / a)
+	} else {
+		fmt.Println(b/a + 1)
+	}
 }
