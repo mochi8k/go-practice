@@ -22,58 +22,42 @@ import (
 
 func main() {
 	// 1:13
-	var a, b, c, d, e int
+	var a, b, c, d, e intre
 	// fmt.Scan(&a, &b, &c, &d, &e)
 	a, b, c, d, e = 4, 3, 3, 4, 4
 	cards := []int{a, b, c, d, e}
 	sort.Ints(cards)
 
-	if isFullHouse(cards) {
+	cardMap := map[int]int{}
+
+	for _, v := range cards {
+		cardMap[v] = (cardMap[v] + 1)
+	}
+
+	fmt.Println(cardMap)
+
+	if isFullHouse(cardMap) {
 		fmt.Println("FULL HOUSE")
+	}
+
+	// if isFullHouse(cards) {
+	// 	fmt.Println("FULL HOUSE")
 	// } else if isThreeCard(cards) {
 	// 	fmt.Println("THREE CARD")
 	// } else if isTwoPair(cards) {
 	// 	fmt.Println("TWO PAIR")
 	// } else if isOnePair(cards) {
 	// 	fmt.Println("ONE PAIR")
-	} else {
-		fmt.Print("NO HAND")
+	// } else {
+	// 	fmt.Print("NO HAND")
+	// }
+
+}
+
+func isFullHouse(cardMap map[int]int) bool {
+	for key, value := range cardMap {
+
 	}
 
+	return true
 }
-
-func isConstain(numbers []int, number int) bool {
-	for _, n := range numbers {
-		if n == number {
-			return true
-		}
-	}
-	return false
-}
-
-func removeDupicates(numbers []int) []int {
-	_numbers := make([]int, 0, len(numbers))
-	for _, n := range numbers {
-		if !isConstain(_numbers, n) {
-			_numbers = append(_numbers, n)
-		}
-	}
-	fmt.Println(_numbers)
-	fmt.Println(numbers)
-	return _numbers
-}
-
-func isFullHouse(cards []int) bool {
-	_cards := removeDupicates(cards)
-  fmt.Println(_cards)
-  return true
-}
-// func isThreeCard(cards []int) bool {
-//
-// }
-// func isTwoPair(cards []int) bool {
-//
-// }
-// func isOnePair(cards []int) bool {
-//
-// }
