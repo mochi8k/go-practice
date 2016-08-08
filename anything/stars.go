@@ -7,7 +7,7 @@ import (
 
 func from(n int) []int {
 	slice := make([]int, 0)
-	for i := range make([]int, 5) {
+	for i := range make([]int, n) {
 		slice = append(slice, i+1)
 	}
 	return slice
