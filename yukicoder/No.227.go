@@ -38,11 +38,33 @@ func main() {
 	}
 
 	sort.Ints(allocationNumbers)
+
 	if isFullHouse(allocationNumbers) {
 		fmt.Println("FULL HOUSE")
+	} else if isThreeCard(allocationNumbers) {
+		fmt.Println("THREE CARD")
+	} else if isTwoPair(allocationNumbers) {
+		fmt.Println("TWO PAIR")
+	} else if isOnePair(allocationNumbers) {
+		fmt.Println("ONE PAIR")
+	} else {
+		fmt.Println("NO HAND")
 	}
+
 }
 
 func isFullHouse(allocationNumbers []int) bool {
 	return reflect.DeepEqual(allocationNumbers, []int{2, 3})
+}
+
+func isThreeCard(allocationNumbers []int) bool {
+	return reflect.DeepEqual(allocationNumbers, []int{1, 1, 3})
+}
+
+func isTwoPair(allocationNumbers []int) bool {
+	return reflect.DeepEqual(allocationNumbers, []int{1, 2, 2})
+}
+
+func isOnePair(allocationNumbers []int) bool {
+	return reflect.DeepEqual(allocationNumbers, []int{1, 1, 1, 2})
 }
