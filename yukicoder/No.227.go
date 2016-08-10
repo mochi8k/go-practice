@@ -16,15 +16,33 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"reflect"
 	"sort"
+	"strconv"
 )
 
+var sc = bufio.NewScanner(os.Stdin)
+
+func nextInt() int {
+	sc.Scan()
+	n, err := strconv.Atoi(sc.Text())
+	if err != nil {
+		panic(err)
+	}
+	return n
+}
+
 func main() {
-	// 1:13
-	var a, b, c, d, e int
-	fmt.Scan(&a, &b, &c, &d, &e)
+	sc.Split(bufio.ScanWords)
+	a := nextInt()
+	b := nextInt()
+	c := nextInt()
+	d := nextInt()
+	e := nextInt()
+
 	cards := []int{a, b, c, d, e}
 	cardMap := map[int]int{}
 
