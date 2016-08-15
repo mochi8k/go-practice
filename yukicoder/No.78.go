@@ -32,22 +32,22 @@ func main() {
 	fmt.Scan(&numberOfIce, &numberOfEat, &s)
 	cases := strings.Split(s, "")
 
-  for {
-    if numberOfEat >= numberOfEated {
-      break
-    }
+	for {
+		if numberOfEat >= numberOfEated {
+			break
+		}
 
-  	for _, v := range cases {
-      n, _ := strconv.Atoi(v)
-  		switch n {
-      case 0:
+		for _, v := range cases {
+			n, _ := strconv.Atoi(v)
+			switch n {
+			case 0:
 
-      case 1:
+			case 1:
 
-      case 2:
-  		}
-  	}
+			case 2:
+			}
+		}
 
-  }
+	}
 
 }
