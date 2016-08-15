@@ -16,48 +16,73 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"reflect"
 	"sort"
+	"strconv"
 )
 
-func main() {
-	// 1:13
-	var a, b, c, d, e intre
-	// fmt.Scan(&a, &b, &c, &d, &e)
-	a, b, c, d, e = 4, 3, 3, 4, 4
-	cards := []int{a, b, c, d, e}
-	sort.Ints(cards)
+var sc = bufio.NewScanner(os.Stdin)
 
+func nextInt() int {
+	sc.Scan()
+	n, err := strconv.Atoi(sc.Text())
+	if err != nil {
+		panic(err)
+	}
+	return n
+}
+
+func main() {
+	sc.Split(bufio.ScanWords)
+	a := nextInt()
+	b := nextInt()
+	c := nextInt()
+	d := nextInt()
+	e := nextInt()
+
+	cards := []int{a, b, c, d, e}
 	cardMap := map[int]int{}
 
 	for _, v := range cards {
 		cardMap[v] = (cardMap[v] + 1)
 	}
 
-	fmt.Println(cardMap)
-
-	if isFullHouse(cardMap) {
-		fmt.Println("FULL HOUSE")
+	allocationNumbers := make([]int, 0)
+	for _, value := range cardMap {
+		allocationNumbers = append(allocationNumbers, value)
 	}
 
-	// if isFullHouse(cards) {
-	// 	fmt.Println("FULL HOUSE")
-	// } else if isThreeCard(cards) {
-	// 	fmt.Println("THREE CARD")
-	// } else if isTwoPair(cards) {
-	// 	fmt.Println("TWO PAIR")
-	// } else if isOnePair(cards) {
-	// 	fmt.Println("ONE PAIR")
-	// } else {
-	// 	fmt.Print("NO HAND")
-	// }
+	sort.Ints(allocationNumbers)
+
+	if isFullHouse(allocationNumbers) {
+		fmt.Println("FULL HOUSE")
+	} else if isThreeCard(allocationNumbers) {
+		fmt.Println("THREE CARD")
+	} else if isTwoPair(allocationNumbers) {
+		fmt.Println("TWO PAIR")
+	} else if isOnePair(allocationNumbers) {
+		fmt.Println("ONE PAIR")
+	} else {
+		fmt.Println("NO HAND")
+	}
 
 }
 
-func isFullHouse(cardMap map[int]int) bool {
-	for key, value := range cardMap {
+func isFullHouse(allocationNumbers []int) bool {
+	return reflect.DeepEqual(allocationNumbers, []int{2, 3})
+}
 
-	}
+func isThreeCard(allocationNumbers []int) bool {
+	return reflect.DeepEqual(allocationNumbers, []int{1, 1, 3})
+}
 
-	return true
+func isTwoPair(allocationNumbers []int) bool {
+	return reflect.DeepEqual(allocationNumbers, []int{1, 2, 2})
+}
+
+func isOnePair(allocationNumbers []int) bool {
+	return reflect.DeepEqual(allocationNumbers, []int{1, 1, 1, 2})
 }
