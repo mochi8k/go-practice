@@ -13,9 +13,9 @@
   A君は最初は「当たり」クジを持っておらず予算は無限にある。
   K本のアイスバーを食べるためにはA君は最低何本のアイスを買う必要があるか？
 
-  Nは1箱に入っているアイスバーの数。1≤N≤501≤N≤50。NNは正の整数。
-  KはA君が食べる予定のアイスバーの数。1≤K≤2000000000=2⋅1091≤K≤2000000000=2⋅109。KKは正の整数。
-  Sの長さはNNの値と等しい。
+  Nは1箱に入っているアイスバーの数。1≤N≤501≤N≤50。Nは正の整数。
+  KはA君が食べる予定のアイスバーの数。1≤K≤2000000000=2⋅1091≤K≤2000000000=2⋅109。Kは正の整数。
+  Sの長さはNの値と等しい。
 */
 
 package main
@@ -26,19 +26,20 @@ import (
 	"strings"
 )
 
-func main() {
-	var numberOfIce, numberOfEat, numberOfEated int
-	var s string
-	fmt.Scan(&numberOfIce, &numberOfEat, &s)
-	cases := strings.Split(s, "")
+func sliceAtoi(anyStrings []string) []int {
+	cases := make([]int, len(anyStrings))
+	for _, v := range anyStrings {
+		n, _ := strconv.Atoi(v)
+		cases = append(cases, n)
+	}
+	return cases
+}
 
-	for {
-		if numberOfEat >= numberOfEated {
-			break
-		}
+func goShopping(numberOfEnd int) func(cases []int) int {
+	var numberOfEated int
 
-		for _, v := range cases {
-			n, _ := strconv.Atoi(v)
+	buy := func(cases []int) int {
+		for _, n := range cases {
 			switch n {
 			case 0:
 
@@ -48,6 +49,21 @@ func main() {
 			}
 		}
 
+		return 0
 	}
+
+	return buy
+}
+
+func main() {
+	var numberOfIce, numberOfEnd int
+	var s string
+	fmt.Scan(&numberOfIce, &numberOfEnd, &s)
+
+	cases := sliceAtoi(strings.Split(s, ""))
+
+	numberOfBought := goShopping(numberOfEnd)(cases)
+
+	fmt.Println(numberOfBought)
 
 }
