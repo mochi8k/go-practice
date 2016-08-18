@@ -11,20 +11,28 @@ import (
 
 const otherWord = "*"
 
-var transforms = []string{
-	otherWord,
-	otherWord,
-	otherWord,
-	otherWord,
-	otherWord + "app",
-	otherWord + "site",
-	otherWord + "time",
-	"get" + otherWord,
-	"go" + otherWord,
-	"lets " + otherWord,
+func readFile(fileName string) []string {
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Println("open file error :", fileName)
+		os.Exit(1)
+	}
+
+	defer file.Close()
+
+	var lines []string
+	s := bufio.NewScanner(file)
+
+	for s.Scan() {
+		lines = append(lines, s.Text())
+	}
+
+	return lines
 }
 
 func main() {
+	transforms := readFile("transforms.txt")
+	fmt.Println(transforms)
 	rand.Seed(time.Now().UTC().UnixNano())
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
