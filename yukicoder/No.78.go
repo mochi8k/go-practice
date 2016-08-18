@@ -36,20 +36,20 @@ func sliceAtoi(anyStrings []string) []int {
 }
 
 func goShopping(numberOfEnd int) func(cases []int) int {
-	var numberOfEated int
+	var numberOfBought int
+	var claimTickets []int
 
-	buy := func(cases []int) int {
+	buy := func (cases []int) int {
 		for _, n := range cases {
-			switch n {
-			case 0:
-
-			case 1:
-
-			case 2:
+			for range make([]int, n) {
+				claimTickets := append(claimTickets, 1)
 			}
 		}
 
-		return 0
+		if numberOfBought >= numberOfEnd {
+			return numberOfBought
+		}
+		return buy(cases)
 	}
 
 	return buy
